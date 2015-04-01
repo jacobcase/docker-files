@@ -1,0 +1,27 @@
+
+#riemann:
+#    build: ../../docker/riemann
+#    volumes:
+#        - ./riemann-conf:/etc/riemann/
+
+db:
+    build: ../../docker/influxdb
+    ports:
+        - "8083:8083"
+        - "8086:8086"
+        - "8090:8090"
+        - "8099:8099"
+
+grafana:
+    image: grafana/grafana:latest
+    ports:
+        - "3000:3000"
+    volumes:
+        - ./grafana/data:/opt/grafana/data
+        - ./grafana/conf/grafana.ini:/etc/grafana/grafana.ini
+    environment:
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+    links:
+        - db
+
+       
