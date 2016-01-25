@@ -18,6 +18,8 @@ telegraf:
   restart: always
   links:
     - influxdb
+    - nginx
+    - apache
 
 chronograf:
   build: ../../docker/chronograf
@@ -40,3 +42,12 @@ kapacitor:
     - 9092:9092
   links:
     - influxdb
+
+nginx:
+  image: nginx
+  hostname: nginx
+
+
+apache:
+  image: httpd
+  hostname: apache

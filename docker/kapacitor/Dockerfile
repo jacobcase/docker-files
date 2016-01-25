@@ -8,4 +8,6 @@ RUN curl -sS -o kapacitor.deb https://s3.amazonaws.com/influxdb/kapacitor_0.2.4-
 
 RUN dpkg -i kapacitor.deb
 
+EXPOSE 9092
+
 CMD ["kapacitord", "-config", "/kapacitor.toml"]
