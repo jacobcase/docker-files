@@ -241,6 +241,17 @@
 #   # bcache devices.
 #   # bcacheDevs = ["bcache0", ...]
 
+[[inputs.exec]]
+  command = "/checks/check_nginx.sh"
+  name_suffix = "_nginx_check"
+  interval = "5s"
+
+[[inputs.exec]]
+  command = "/checks/check_apache.sh"
+  name_suffix = "_apache_check"
+  interval = "5s"
+
+
 # Read metrics about cpu usage
 [[inputs.cpu]]
   # Whether to report per-cpu stats or not
