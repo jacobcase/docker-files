@@ -6,7 +6,7 @@ stream
 
 .from().measurement('exec_apache_check')
 .alert()
-.crit(lambda: "response" == 0)
+.crit(lambda: "response" < 1)
 .log('/kapacitor-data/scriptlogs/basic_check.log')
 
 
