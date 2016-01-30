@@ -19,4 +19,5 @@ EOF
 JSON=`curl -m 3 -w "$CURL_FORMAT" -o /dev/null -s "$HOST"`
 
 echo $JSON | sed -e 's/"response": 000/"response": 0/g'
+
 exit 0

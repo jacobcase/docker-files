@@ -10,4 +10,6 @@ RUN dpkg -i telegraf.deb
 
 COPY check_apache.sh check_nginx.sh /checks/
 
-CMD ["telegraf", "-config", "/telegraf.toml"]
+COPY start.sh /start.sh
+
+CMD ["/start.sh"]

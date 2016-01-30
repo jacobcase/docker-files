@@ -9,6 +9,10 @@ influxdb:
   ports:
     - 8083:8083
     - 8086:8086
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
 
 telegraf:
   build: telegraf/
@@ -20,6 +24,10 @@ telegraf:
     - influxdb
     - nginx
     - apache
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
 
 chronograf:
   build: ../../docker/chronograf
@@ -31,6 +39,10 @@ chronograf:
   restart: always
   links:
     - influxdb
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
 
 
 kapacitor:
@@ -42,12 +54,24 @@ kapacitor:
     - 9092:9092
   links:
     - influxdb
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
 
 nginx:
   image: nginx
   hostname: nginx
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
 
 
 apache:
   image: httpd
   hostname: apache
+  log_driver: "json-file"
+  log_opt:
+    max-size: "100k"
+    max-file: "2"
