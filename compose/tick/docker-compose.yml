@@ -40,3 +40,4 @@ kapacitor:
     - 9092:9092
   links:
     - influxdb
+  hostname: kapacitor

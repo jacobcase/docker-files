@@ -28,8 +28,8 @@ data_dir = "/root/.kapacitor"
   [influxdb.excluded-subscriptions]
 
 [logging]
-  file = "STDERR"
-  level = "INFO"
+  file = "STDOUT"
+  level = "DEBUG"
 
 # [collectd]
 #   enabled = false

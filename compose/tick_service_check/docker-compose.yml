@@ -48,8 +48,10 @@ chronograf:
 kapacitor:
   build: ../../docker/kapacitor
   restart: always  # if influxdb isn't ready, it will exit instead of retry. dumb
+  hostname: kapacitor
   volumes:
     - ./kapacitor.toml:/kapacitor.toml
+    - ./kapacitor-data:/kapacitor-data
   ports:
     - 9092:9092
   links:
