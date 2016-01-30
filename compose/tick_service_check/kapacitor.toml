@@ -1,4 +1,4 @@
-hostname = "localhost"
+hostname = "tick-sc-kapacitor"
 data_dir = "/root/.kapacitor"
 
 [http]
@@ -18,7 +18,7 @@ data_dir = "/root/.kapacitor"
 
 [influxdb]
   enabled = true
-  urls = ["http://influxdb:8086"]
+  urls = ["http://tick-sc-influxdb:8086"]
   username = ""
   password = ""
   timeout = 0

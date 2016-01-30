@@ -6,7 +6,7 @@
 EXIT_CODE=1
 
 while [ 1 ]; do
-    curl -q -G http://influxdb:8086/query --data-urlencode "q=CREATE DATABASE telegraf" &> /dev/null
+    curl -q -G http://tick-sc-influxdb:8086/query --data-urlencode "q=CREATE DATABASE telegraf" &> /dev/null
     EXIT_CODE="$?"
 
     if [ "$EXIT_CODE" -eq "0" ]; then

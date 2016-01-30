@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST="apache:80"
+HOST="tick-sc-apache:80"
 
 read -d '' CURL_FORMAT << "EOF"
 {

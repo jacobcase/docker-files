@@ -1,0 +1,12 @@
+// This obviously isn't a service checking script. It doesn't have flipflop
+// protection, it just writes to a log file when one of the servers isn't reachable
+
+
+stream
+
+.from().measurement('exec_apache_check')
+.alert()
+.crit(lambda: "response" == 0)
+.log('/kapacitor-data/scriptlogs/basic_check.log')
+
+

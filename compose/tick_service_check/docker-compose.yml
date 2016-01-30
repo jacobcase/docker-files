@@ -4,7 +4,8 @@ influxdb:
   build: ../../docker/influxdb
   volumes:
     - ./influxdb.toml:/influxdb.toml
-  hostname: influxdb
+  hostname: tick-sc-influxdb
+  container_name: tick-sc-influxdb
   restart: always
   ports:
     - 8083:8083
@@ -18,7 +19,8 @@ telegraf:
   build: telegraf/
   volumes:
     - ./telegraf.toml:/telegraf.toml
-  hostname: telegraf
+  hostname: tick-sc-telegraf
+  container_name: tick-sc-telegraf
   restart: always
   links:
     - influxdb
@@ -35,7 +37,8 @@ chronograf:
     - ./chronograf.toml:/chronograf.toml
   ports:
     - 10000:10000
-  hostname: chronograf
+  hostname: tick-sc-chronograf
+  container_name: tick-sc-chronograf
   restart: always
   links:
     - influxdb
@@ -48,7 +51,8 @@ chronograf:
 kapacitor:
   build: ../../docker/kapacitor
   restart: always  # if influxdb isn't ready, it will exit instead of retry. dumb
-  hostname: kapacitor
+  hostname: tick-sc-kapacitor
+  container_name: tick-sc-kapacitor
   volumes:
     - ./kapacitor.toml:/kapacitor.toml
     - ./kapacitor-data:/kapacitor-data
@@ -63,7 +67,8 @@ kapacitor:
 
 nginx:
   image: nginx
-  hostname: nginx
+  hostname: tick-sc-nginx
+  container_name: tick-sc-nginx
   log_driver: "json-file"
   log_opt:
     max-size: "100k"
@@ -72,7 +77,8 @@ nginx:
 
 apache:
   image: httpd
-  hostname: apache
+  hostname: tick-sc-apache
+  container_name: tick-sc-apache
   log_driver: "json-file"
   log_opt:
     max-size: "100k"

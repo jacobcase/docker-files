@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST="nginx:80"
+HOST="tick-sc-nginx:80"
 
 read -d '' CURL_FORMAT << "EOF"
 {
