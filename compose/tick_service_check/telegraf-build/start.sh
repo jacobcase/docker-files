@@ -17,5 +17,5 @@ while [ 1 ]; do
 done
 
 
-telegraf -config /telegraf.toml
+exec telegraf -config /telegraf.toml
 

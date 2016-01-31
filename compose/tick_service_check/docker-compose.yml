@@ -3,7 +3,7 @@
 influxdb:
   build: ../../docker/influxdb
   volumes:
-    - ./influxdb.toml:/influxdb.toml
+    - ./configs/influxdb.toml:/influxdb.toml
   hostname: tick-sc-influxdb
   container_name: tick-sc-influxdb
   restart: always
@@ -16,16 +16,12 @@ influxdb:
     max-file: "2"
 
 telegraf:
-  build: telegraf/
+  build: telegraf-build/
   volumes:
-    - ./telegraf.toml:/telegraf.toml
+    - ./configs/telegraf.toml:/telegraf.toml
   hostname: tick-sc-telegraf
   container_name: tick-sc-telegraf
   restart: always
-  links:
-    - influxdb
-    - nginx
-    - apache
   log_driver: "json-file"
   log_opt:
     max-size: "100k"
@@ -34,14 +30,12 @@ telegraf:
 chronograf:
   build: ../../docker/chronograf
   volumes:
-    - ./chronograf.toml:/chronograf.toml
+    - ./configs/chronograf.toml:/chronograf.toml
   ports:
     - 10000:10000
   hostname: tick-sc-chronograf
   container_name: tick-sc-chronograf
   restart: always
-  links:
-    - influxdb
   log_driver: "json-file"
   log_opt:
     max-size: "100k"
@@ -54,12 +48,10 @@ kapacitor:
   hostname: tick-sc-kapacitor
   container_name: tick-sc-kapacitor
   volumes:
-    - ./kapacitor.toml:/kapacitor.toml
+    - ./configs/kapacitor.toml:/kapacitor.toml
     - ./kapacitor-data:/kapacitor-data
   ports:
     - 9092:9092
-  links:
-    - influxdb
   log_driver: "json-file"
   log_opt:
     max-size: "100k"
