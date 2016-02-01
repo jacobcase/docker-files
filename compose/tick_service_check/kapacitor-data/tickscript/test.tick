@@ -2,13 +2,18 @@
 // protection, it just writes to a log file when one of the servers isn't reachable
 
 
-stream
+var data = stream
+    .from().measurement('exec_apache_check')
 
-.from().measurement('exec_apache_check')
+data
     .alert()
+        //.deadman(1.0, 20s)
+
         .id('{{index .Tags "host" }}:{{ .Name }}')
         .message('{{ .ID }} is {{ .Level }}, response value: {{ index .Fields "response" }}')
         .warn(lambda: ("response" < 200) OR ("response" >= 300 ))
         .crit(lambda: "response" == 0)
+        .flapping(0.25, 0.5)
         .stateChangesOnly()
+
         .log('/kapacitor-data/scriptlogs/basic_check.log')
