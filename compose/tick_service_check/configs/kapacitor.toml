@@ -30,7 +30,7 @@ data_dir = "/root/.kapacitor"
 
 [logging]
   file = "STDERR"
-  level = "INFO"
+  level = "DEBUG"
 
 [collectd]
   enabled = false
