@@ -11,9 +11,14 @@ COLORS = {
 
 DEFAULT_COLOR = '\033[39m'
 
-tail_proc = subprocess.Popen(["docker", "exec", "tick-sc-kapacitor",
-    "tail", "-F", "/kapacitor-data/scriptlogs/basic_check.log"],
+#tail_proc = subprocess.Popen(["docker", "exec", "-it", "tick-sc-kapacitor",
+#    "tail", "-F", "/kapacitor-data/scriptlogs/basic_check.log"],
+#    stdout=subprocess.PIPE,
+#    shell=True,
+#    universal_newlines=True)
+tail_proc = subprocess.Popen("docker exec -it tick-sc-kapacitor tail -n 0 -F /kapacitor-data/scriptlogs/basic_check.log",
     stdout=subprocess.PIPE,
+    shell=True,
     universal_newlines=True)
 
 for ln in tail_proc.stdout:

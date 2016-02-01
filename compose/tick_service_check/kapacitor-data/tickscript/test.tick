@@ -5,12 +5,10 @@
 stream
 
 .from().measurement('exec_apache_check')
-//.eval(lambda: "time", lambda: "host", lambda: "response")
-//    .as("time", "host", "response")
     .alert()
         .id('{{index .Tags "host" }}:{{ .Name }}')
         .message('{{ .ID }} is {{ .Level }}, response value: {{ index .Fields "response" }}')
-        .crit(lambda: "response" < 1)
+        .warn(lambda: ("response" < 200) OR ("response" >= 300 ))
+        .crit(lambda: "response" == 0)
+        .stateChangesOnly()
         .log('/kapacitor-data/scriptlogs/basic_check.log')
-
-
